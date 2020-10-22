@@ -22,9 +22,6 @@ public class GenericDao<Entidade>
 	}
 	
 	
-	
-	
-	
 	public void salvar(Entidade entidade)
 	{
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
@@ -137,6 +134,33 @@ public class GenericDao<Entidade>
 		{
 			transacao = sessao.beginTransaction();
 			sessao.update(entidade);
+			transacao.commit();
+		}catch(RuntimeException erro)
+		{
+			if (transacao!=null)
+			{
+				transacao.rollback();
+			}
+			
+			throw erro;
+		}
+		
+		finally 
+		{
+			sessao.close();
+		}
+		
+	}
+	
+	public void merge(Entidade entidade)
+	{
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		Transaction transacao = null;
+		
+		try
+		{
+			transacao = sessao.beginTransaction();
+			sessao.merge(entidade);
 			transacao.commit();
 		}catch(RuntimeException erro)
 		{
