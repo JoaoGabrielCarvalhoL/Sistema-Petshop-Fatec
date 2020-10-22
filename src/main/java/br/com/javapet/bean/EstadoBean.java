@@ -1,7 +1,9 @@
 package br.com.javapet.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -17,6 +19,8 @@ public class EstadoBean implements Serializable
 {
 	private Estado estado;
 	
+	private List<Estado> estados; 
+	
 	public Estado getEstado() 
 	{
 		return estado;
@@ -27,6 +31,15 @@ public class EstadoBean implements Serializable
 		this.estado = estado;
 	}
 	
+	public List<Estado> getEstados() 
+	{
+		return estados;
+	}
+	
+	public void setEstados(List<Estado> estados) 
+	{
+		this.estados = estados;
+	}
 	
 	public void salvar()
 	{
@@ -40,6 +53,21 @@ public class EstadoBean implements Serializable
 		catch(RuntimeException erro)
 		{
 			Messages.addGlobalError("Erro ao tentar salvar o Estado");
+			erro.printStackTrace();
+		}
+	}
+	
+	@PostConstruct
+	public void listar()
+	{
+		try
+		{
+			EstadoDao estadoDao = new EstadoDao(); 
+			estados = estadoDao.listar();
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Erro ao tentar listar os Estados");
 			erro.printStackTrace();
 		}
 	}

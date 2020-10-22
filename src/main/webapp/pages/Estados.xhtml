@@ -19,7 +19,8 @@
 	<p:panel header="Estados - Listagem">
 	
 		<p:dataTable emptyMessage="Nenhum registro encontrado."
-			paginator="true">
+			paginator="true"
+			value="#{estadoBean.estados}" var="estado">
 			
 				<f:facet name="footer">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" 
@@ -28,9 +29,11 @@
 									
 				</f:facet>
 				<p:column headerText="Nome">
+					<h:outputText value="#{estado.nome}"></h:outputText>
 				</p:column>
 				
 				<p:column headerText="Sigla">
+					<h:outputText value="#{estado.sigla}"></h:outputText>
 				</p:column>
 				
 				<p:column headerText="Opções">
