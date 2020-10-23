@@ -15,12 +15,12 @@
 <h:body>
 	<p:growl id="mensagem"></p:growl>
 
-<h:form>
+<h:form id="formListagem">
 	<p:panel header="Estados - Listagem">
 	
-		<p:dataTable emptyMessage="Nenhum registro encontrado."
+		<p:dataTable  id="tabela" emptyMessage="Nenhum registro encontrado."
 			paginator="true"
-			value="#{estadoBean.estados}" var="estado">
+			value="#{estadoBean.estados}" var="estado" rows="">
 			
 				<f:facet name="footer">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" 
@@ -28,18 +28,28 @@
 					update=":formCadastro:painel"></p:commandButton>		
 									
 				</f:facet>
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{estado.nome}" filterBy="#{estado.nome}">
 					<h:outputText value="#{estado.nome}"></h:outputText>
 				</p:column>
 				
-				<p:column headerText="Sigla">
+				<p:column headerText="Sigla" sortBy="#{estado.sigla}" filterBy="#{estado.sigla}">
 					<h:outputText value="#{estado.sigla}"></h:outputText>
 				</p:column>
 				
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{estadoBean.excluir}"
+						update=":mensagem :formListagem:tabela">
+						<p:confirm header="Confirmação" message="Deseja excluir o estado?" icon="ui-icon-alert"></p:confirm>
+						<f:attribute name="estadoSelecionado" value="#{estado}"></f:attribute>
+					</p:commandButton>
 				</p:column>	
-		
 		</p:dataTable>
+		
+		<p:confirmDialog global="true">
+			<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"></p:commandButton>
+			<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"></p:commandButton>
+		</p:confirmDialog>
 
 	</p:panel>
 </h:form>	
@@ -57,7 +67,7 @@
 				</h:panelGrid>	
 				
 				<h:panelGrid columns="2">	
-					<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar}" update=":mensagem :formCadastro:painel"></p:commandButton>
+					<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar}" update=":mensagem :formCadastro:painel :formListagem:tabela"></p:commandButton>
 					<p:commandButton value="Cancelar" oncomplete="PF('dialogo').hide();"></p:commandButton>
 				</h:panelGrid>	
 				
