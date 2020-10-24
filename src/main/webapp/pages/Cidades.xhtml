@@ -13,32 +13,32 @@
 </h:head>
 
 <h:body>
-<h:form>
-
-	<p:panel header="Cidades - Listagem">
+<p:growl id="mensagem"></p:growl>
+	<h:form>
+		<p:panel header="Cidades - Listagem">
 	
-		<p:dataTable emptyMessage="Nenhum registro encontrado."
-			paginator="true" value="#{cidadeBean.cidades}" var="cidade" rows="">
+			<p:dataTable emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{cidadeBean.cidades}" var="cidade" rows="">
 			
-				<f:facet name="footer">
-					<p:commandButton value="Novo" actionListener="#{cidadeBean.novo}" oncomplete="PF('dialogo').show();" update=":formCadastro:painel"></p:commandButton>						
-				</f:facet>
-				<p:column headerText="Nome" filterBy="#{cidade.nome}" sortBy="#{cidade.nome}">
-					<h:outputText value="#{cidade.nome}"></h:outputText>
-				</p:column>
+					<f:facet name="footer">
+						<p:commandButton value="Novo" actionListener="#{cidadeBean.novo}" oncomplete="PF('dialogo').show();" update=":mensagem :formCadastro:painel"></p:commandButton>						
+					</f:facet>
+					<p:column headerText="Nome" filterBy="#{cidade.nome}" sortBy="#{cidade.nome}">
+						<h:outputText value="#{cidade.nome}"></h:outputText>
+					</p:column>
 				
-				<p:column headerText="Estado" filterBy="#{cidade.estado.nome}" sortBy="#{cidade.estado.nome}">
-					<h:outputText value="#{cidade.estado.nome}"></h:outputText>
-					<h:outputText value=" - "></h:outputText>
-					<h:outputText value="#{cidade.estado.sigla}"></h:outputText>
-				</p:column>
+					<p:column headerText="Estado" filterBy="#{cidade.estado.nome}" sortBy="#{cidade.estado.nome}">
+						<h:outputText value="#{cidade.estado.nome}"></h:outputText>
+						<h:outputText value=" - "></h:outputText>
+						<h:outputText value="#{cidade.estado.sigla}"></h:outputText>
+					</p:column>
 				
-				<p:column headerText="Opções">
-				</p:column>	
+					<p:column headerText="Opções">
+					</p:column>	
 		
-		</p:dataTable>
+			</p:dataTable>
 
-	</p:panel>
+		</p:panel>
 </h:form>	
 
 	<p:dialog header="Cidades - Cadastro" widgetVar="dialogo"
@@ -53,6 +53,7 @@
 					
 					<p:selectOneMenu filter="true" value="#{cidadeBean.cidade.estado}">
 						<f:selectItem itemValue="" itemLabel="Selecione um Estado"></f:selectItem>	
+						<f:selectItems value="#{cidadeBean.estados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.nome}"></f:selectItems>
 				
 					</p:selectOneMenu>
 					

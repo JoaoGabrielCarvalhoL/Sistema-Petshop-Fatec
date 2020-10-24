@@ -10,7 +10,9 @@ import javax.faces.bean.ViewScoped;
 import org.omnifaces.util.Messages;
 
 import br.com.javapet.dao.CidadeDao;
+import br.com.javapet.dao.EstadoDao;
 import br.com.javapet.domain.Cidade;
+import br.com.javapet.domain.Estado;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -20,6 +22,18 @@ public class CidadeBean implements Serializable
 	private Cidade cidade; 
 	
 	private List<Cidade> cidades;
+	
+	private List<Estado> estados;
+	
+	public List<Estado> getEstados() 
+	{
+		return estados;
+	}
+	
+	public void setEstados(List<Estado> estados) 
+	{
+		this.estados = estados;
+	}
 	
 	public Cidade getCidade() 
 	{
@@ -51,13 +65,23 @@ public class CidadeBean implements Serializable
 		}
 		catch(RuntimeException erro)
 		{
-			Messages.addGlobalError("Ocorreu um erro ao tentar listar as cidades");
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar listar as cidades");
 			erro.printStackTrace();
 		}
 	}
 	
 	public void novo()
 	{
-		cidade = new Cidade(); 
+		try
+		{
+			cidade = new Cidade(); 
+			EstadoDao estadoDao = new EstadoDao(); 
+			estados = estadoDao.listar();
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar gerar uma nova cidade");
+			erro.printStackTrace();
+		}
 	}
 }
