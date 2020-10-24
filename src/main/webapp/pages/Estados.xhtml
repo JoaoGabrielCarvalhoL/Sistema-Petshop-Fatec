@@ -43,6 +43,12 @@
 						<p:confirm header="Confirmação" message="Deseja excluir o estado?" icon="ui-icon-alert"></p:confirm>
 						<f:attribute name="estadoSelecionado" value="#{estado}"></f:attribute>
 					</p:commandButton>
+					
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{estadoBean.editar}" update=":formCadastro:painel" oncomplete="PF('dialogo').show();">
+						<f:attribute name="estadoSelecionado" value="#{estado}"></f:attribute>
+						
+					
+					</p:commandButton>
 				</p:column>	
 		</p:dataTable>
 		

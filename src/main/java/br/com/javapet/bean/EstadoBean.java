@@ -47,7 +47,7 @@ public class EstadoBean implements Serializable
 		try
 		{
 			EstadoDao estadoDao = new EstadoDao();
-			estadoDao.salvar(estado);
+			estadoDao.merge(estado);
 			novo();
 			estados = estadoDao.listar();
 			Messages.addGlobalInfo("Estado salvo com sucesso!");
@@ -74,6 +74,12 @@ public class EstadoBean implements Serializable
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir o estado!");
 			erro.printStackTrace();
 		}
+	}
+	
+	public void editar(ActionEvent evento)
+	{
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
+		
 	}
 		
 	
