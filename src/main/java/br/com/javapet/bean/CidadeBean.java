@@ -17,7 +17,19 @@ import br.com.javapet.domain.Cidade;
 @ViewScoped
 public class CidadeBean implements Serializable
 {
-	private List<Cidade> cidades; 
+	private Cidade cidade; 
+	
+	private List<Cidade> cidades;
+	
+	public Cidade getCidade() 
+	{
+		return cidade;
+	}
+	
+	public void setCidade(Cidade cidade) 
+	{
+		this.cidade = cidade;
+	}
 	
 	public List<Cidade> getCidades() 
 	{
@@ -42,5 +54,10 @@ public class CidadeBean implements Serializable
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as cidades");
 			erro.printStackTrace();
 		}
+	}
+	
+	public void novo()
+	{
+		cidade = new Cidade(); 
 	}
 }
