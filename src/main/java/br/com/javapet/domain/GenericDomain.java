@@ -7,10 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+@SuppressWarnings("serial")
 @MappedSuperclass
 public class GenericDomain implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -24,6 +25,12 @@ public class GenericDomain implements Serializable
 	{
 		this.id = id;
 	} 
+	
+	@Override
+	public String toString() 
+	{
+	    return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
+	}
 	
 	
 }

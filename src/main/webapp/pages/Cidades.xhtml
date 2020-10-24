@@ -23,6 +23,7 @@
 					<f:facet name="footer">
 						<p:commandButton value="Novo" actionListener="#{cidadeBean.novo}" oncomplete="PF('dialogo').show();" update=":mensagem :formCadastro:painel"></p:commandButton>						
 					</f:facet>
+					
 					<p:column headerText="Nome" filterBy="#{cidade.nome}" sortBy="#{cidade.nome}">
 						<h:outputText value="#{cidade.nome}"></h:outputText>
 					</p:column>
@@ -51,7 +52,7 @@
 					
 					<p:outputLabel value="Estado: "></p:outputLabel>
 					
-					<p:selectOneMenu filter="true" value="#{cidadeBean.cidade.estado}">
+					<p:selectOneMenu filter="true" value="#{cidadeBean.cidade.estado}" converter="omnifaces.SelectItemsConverter">
 						<f:selectItem noSelectionOption="true" itemLabel="Selecione um Estado"></f:selectItem>	
 						<f:selectItems value="#{cidadeBean.estados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.nome} - #{estado.sigla}"></f:selectItems>
 				
