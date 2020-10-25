@@ -22,7 +22,11 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
-       
     </servlet-mapping>
+    
+    <!-- Carregamento do Hibernate -->
+    <listener>
+     <listener-class>br.com.javapet.util.HibernateContexto</listener-class>
+    </listener>
 </web-app>
 
