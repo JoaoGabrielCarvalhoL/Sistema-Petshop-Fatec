@@ -62,7 +62,7 @@ public class CidadeBean implements Serializable
 		try 
 		{
 			CidadeDao cidadeDao = new CidadeDao(); 
-			cidades = cidadeDao.listar();
+			cidades = cidadeDao.listar("nome");
 		}
 		catch(RuntimeException erro)
 		{
@@ -77,7 +77,7 @@ public class CidadeBean implements Serializable
 		{
 			cidade = new Cidade(); 
 			EstadoDao estadoDao = new EstadoDao(); 
-			estados = estadoDao.listar();
+			estados = estadoDao.listar("nome");
 		}
 		catch(RuntimeException erro)
 		{

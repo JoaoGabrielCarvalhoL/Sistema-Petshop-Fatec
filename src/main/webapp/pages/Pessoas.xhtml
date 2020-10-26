@@ -69,15 +69,15 @@
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">
 					<p:outputLabel  for="nome" value="Nome: "></p:outputLabel>
-					<p:inputText id="nome" maxlength="50" size="30" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"></p:inputText>
+					<p:inputText id="nome" maxlength="60" size="40" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"></p:inputText>
 					
 			
 					<p:outputLabel for="cpf" value="CPF: "></p:outputLabel>
-					<p:inputText id="cpf" maxlength="14" size="13" required="true" requiredMessage="O campo CPF é obrigatório!"></p:inputText>
+					<p:inputMask id="cpf" mask="999.999.999-99" size="12" value="#{pessoaBean.pessoa.cpf}" required="true" requiredMessage="O campo CPF é obrigatório!"></p:inputMask>
 					
 					
 					<p:outputLabel for="rg" value="RG: "></p:outputLabel>
-					<p:inputText id="rg" maxlength="12" size="13" required="true" requiredMessage="O campo RG é obrigatório!"></p:inputText>
+					<p:inputText id="rg" maxlength="12" size="12" required="true" requiredMessage="O campo RG é obrigatório!"></p:inputText>
 					
 					<p:outputLabel for="estado" value="Estado: "></p:outputLabel>
 					<p:selectOneMenu id="estado" filter="true" converter="omnifaces.SelectItemsConverter" required="true" requiredMessage="O campo Estado é obrigatório!">
@@ -92,17 +92,17 @@
 					</p:selectOneMenu>
 					
 					<p:outputLabel for="rua" value="Rua: "></p:outputLabel>
-					<p:inputText id="rua" maxlength="100" size="50" value="#{pessoaBean.pessoa.rua}" required="true" requiredMessage="O campo Rua é obrigatório!"></p:inputText>
+					<p:inputText id="rua" maxlength="100" size="40" value="#{pessoaBean.pessoa.rua}" required="true" requiredMessage="O campo Rua é obrigatório!"></p:inputText>
 					
+					
+					<p:outputLabel for="bairro" value="Bairro: "></p:outputLabel>
+					<p:inputText id="bairro" maxlength="50" size="20" value="#{pessoaBean.pessoa.bairro}" required="true" requiredMessage="O campo Bairro é obrigatório!"></p:inputText>
 					
 					<p:outputLabel value="Número: "></p:outputLabel>
 					<p:inputText maxlength="5" size="10" value="#{pessoaBean.pessoa.numero}" required="true" requiredMessage="O campo Número é obrigatório!" converterMessage="Informe um valor válido para o campo Número." validatorMessage="Informe um valor entre 1 e 32767 para o campo Número.">
 						<f:validateLongRange minimum="1" maximum="32767"></f:validateLongRange>
 					</p:inputText>
 					
-					
-					<p:outputLabel for="bairro" value="Bairro: "></p:outputLabel>
-					<p:inputText id="bairro" maxlength="50" size="20" value="#{pessoaBean.pessoa.bairro}" required="true" requiredMessage="O campo Bairro é obrigatório!"></p:inputText>
 					
 					<p:outputLabel for="cep" value="CEP: "></p:outputLabel>
 					<p:inputText id="cep" maxlength="10" size="10" ></p:inputText>
@@ -113,13 +113,13 @@
 					
 					
 					<p:outputLabel for="telefone" value="Telefone: "></p:outputLabel>
-					<p:inputText id="telefone" maxlength="13" size="10"></p:inputText>
+					<p:inputMask id="telefone" mask="(99)9999-9999" size="10"></p:inputMask>
 					
 					<p:outputLabel for="celular" value="Celular: "></p:outputLabel>
-					<p:inputText id="celular" maxlength="14" size="10"></p:inputText>
+					<p:inputMask id="celular" mask="(99)99999-9999" size="10"></p:inputMask>
 					
 					<p:outputLabel for="email" value="Email: "></p:outputLabel>
-					<p:inputText id="email" maxlength="100" size="50" value="#{pessoaBean.pessoa.email}" required="true" requiredMessage="O campo E-mail é obrigatório!"></p:inputText>
+					<p:inputText id="email" maxlength="100" size="40" value="#{pessoaBean.pessoa.email}" required="true" requiredMessage="O campo E-mail é obrigatório!"></p:inputText>
 					
 				</h:panelGrid>	
 				
