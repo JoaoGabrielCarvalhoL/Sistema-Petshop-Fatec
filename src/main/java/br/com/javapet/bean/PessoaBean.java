@@ -1,6 +1,7 @@
 package br.com.javapet.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,10 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.javapet.dao.EstadoDao;
 import br.com.javapet.dao.PessoaDao;
+import br.com.javapet.domain.Cidade;
+import br.com.javapet.domain.Estado;
 import br.com.javapet.domain.Pessoa;
 
 @SuppressWarnings("serial")
@@ -21,6 +25,31 @@ public class PessoaBean implements Serializable
 	private Pessoa pessoa; 
 	
 	private List<Pessoa> pessoas; 
+	
+	private List<Estado> estados; 
+	
+	private List<Cidade> cidades; 
+	
+	
+	public List<Cidade> getCidades() 
+	{
+		return cidades;
+	}
+	
+	public void setCidades(List<Cidade> cidades) 
+	{
+		this.cidades = cidades;
+	}
+	
+	public List<Estado> getEstados()
+	{
+		return estados;
+	}
+	
+	public void setEstados(List<Estado> estados) 
+	{
+		this.estados = estados;
+	}
 	
 	public Pessoa getPessoa() 
 	{
@@ -60,7 +89,20 @@ public class PessoaBean implements Serializable
 	
 	public void novo()
 	{
-		pessoa = new Pessoa(); 
+		try
+		{
+			pessoa = new Pessoa(); 
+			EstadoDao estadoDao = new EstadoDao(); 
+			estados = estadoDao.listar(); 
+		
+			cidades = new ArrayList<>();
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar gerar uma nova pessoa");
+			erro.printStackTrace();
+		}
+		
 	}
 	
 	public void editar(ActionEvent evento)
