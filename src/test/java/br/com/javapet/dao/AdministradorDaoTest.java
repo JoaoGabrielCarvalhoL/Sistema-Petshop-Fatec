@@ -205,7 +205,7 @@ public class AdministradorDaoTest
 			administrador.getPessoa().setBairro("Centro");
 			administrador.getPessoa().setCep("19930-000");
 			administrador.getPessoa().setComplemento("Casa");
-			administrador.getPessoa().setCidade("Ribeirão do Sul");
+			
 			administrador.getPessoa().setTelefone("3378-2525");
 			administrador.getPessoa().setCelular("14-9999999");
 			administrador.getPessoa().setEmail("laismansano@hotmail.com");

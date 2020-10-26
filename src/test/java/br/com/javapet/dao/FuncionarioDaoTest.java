@@ -141,7 +141,7 @@ public class FuncionarioDaoTest
 			funcionario.getPessoa().setNumero(new Short("999"));
 			funcionario.getPessoa().setComplemento("Casa");
 			funcionario.getPessoa().setBairro("Planalto");
-			funcionario.getPessoa().setCidade("Ourinhos");
+			
 			funcionario.getPessoa().setCep("19930-000");
 			funcionario.getPessoa().setTelefone("3378-1458");
 			funcionario.getPessoa().setCelular("18-999999999");

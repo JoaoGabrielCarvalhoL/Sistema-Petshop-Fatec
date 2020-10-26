@@ -26,7 +26,7 @@ public class PessoaDaoTest
 		pessoa.setTelefone("3379-0000"); 
 		pessoa.setCelular("14-998045007");
 		pessoa.setEmail("27.joaogabriel@gmail.com");
-		pessoa.setCidade("Ribeirão do Sul");
+		
 		
 		PessoaDao pessoaDao = new PessoaDao(); 
 		pessoaDao.salvar(pessoa);
@@ -130,7 +130,7 @@ public class PessoaDaoTest
 			pessoa.setTelefone("3379-1264"); 
 			pessoa.setCelular("14-998000000");
 			pessoa.setEmail("ruy@gmail.com");
-			pessoa.setCidade("Ribeirão do Sul");
+		
 			
 			pessoaDao.editar(pessoa);
 			

@@ -26,7 +26,9 @@
 				</f:facet>
 
 				<p:column headerText="Descrição">
-					<h:outputText value="#{produto.descricao}" />
+					<h:outputText value="#{produto.descricao}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2"></f:convertNumber>
+					</h:outputText>
 				</p:column>
 
 
@@ -78,7 +80,10 @@
 				<p:inputText maxlength="7" size="10"
 					value="#{produtoBean.produto.preco}" required="true"
 					requiredMessage="O campo 'Preço' é obrigatório"
-					converterMessage="Informe um valor válido para o campo 'Preço''" />
+					converterMessage="Informe um valor válido para o campo 'Preço''" validatorMessage="Informe um valor entre 0,01 e 9.999,00 para o campo texto">
+					<f:validateDoubleRange minimum="0.01" maximum="9999.99"></f:validateDoubleRange>
+					<f:convertNumber locale="pt_BR" minFractionDigits="2"></f:convertNumber>
+				</p:inputText>	
 
 				
 

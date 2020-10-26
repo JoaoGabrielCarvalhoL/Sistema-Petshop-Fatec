@@ -196,7 +196,7 @@ public class UsuarioDaoTest
 			usuario.getPessoa().setBairro("Jardim Planalto");
 			usuario.getPessoa().setCep("19930-000");
 			usuario.getPessoa().setComplemento("Casa");
-			usuario.getPessoa().setCidade("Ribeirão do Sul");
+			
 			usuario.getPessoa().setTelefone("3379-0000");
 			usuario.getPessoa().setCelular("14-000000000");
 			usuario.getPessoa().setEmail("antonio@hotmail.com");

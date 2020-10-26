@@ -168,7 +168,7 @@ public class ClienteDaoTest
 			cliente.getPessoa().setBairro("Jardim Planalto");
 			cliente.getPessoa().setCep("19930-000");
 			cliente.getPessoa().setComplemento("Casa");
-			cliente.getPessoa().setCidade("Ribeirão do Sul");
+			
 			cliente.getPessoa().setTelefone("3379-1264");
 			cliente.getPessoa().setCelular("14-9999999");
 			cliente.getPessoa().setEmail("biel01_@hotmail.com");
