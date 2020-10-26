@@ -8,78 +8,70 @@
 <h:head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Pessoa</title>
+	<title>Pessoas</title>
 	
 </h:head>
 
 <h:body>
-<h:form>
+	
+	<p:growl id="mensagem"></p:growl>
+	
+	<h:form id="formListagem">
 
-	<p:panel header="Pessoa - Listagem">
+	<p:panel header="Pessoas - Listagem">
 	
 		<p:dataTable emptyMessage="Nenhum registro encontrado."
-			paginator="true">
+			paginator="true" value="#{pessoaBean.pessoas}" var="pessoa" rows="">
 			
 				<f:facet name="footer">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"></p:commandButton>						
+					<p:commandButton value="Novo" actionListener="#{pessoaBean.novo}" oncomplete="PF('dialogo').show();" update=":mensagem :formCadastro:painel">	
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"></f:actionListener>		
+					</p:commandButton>			
 				</f:facet>
+				
 				<p:column headerText="Nome">
+					<h:outputText value="#{pessoa.nome}"></h:outputText>
 				</p:column>
 				
-				<p:column headerText="Data de Nascimento">
-				</p:column>	
-				
 				<p:column headerText="CPF">
+					<h:outputText value="#{pessoa.cpf}"></h:outputText>
 				</p:column>
 				
 				<p:column headerText="RG">
+					<h:outputText value="#{pessoa.rg}"></h:outputText>
 				</p:column>	
 				
-				<p:column headerText="Rua">
-				</p:column>
-				
-				<p:column headerText="Número">
-				</p:column>
-				
-				<p:column headerText="Complemento">
+				<p:column headerText="Opções"> 
+					<p:commandButton icon="ui-icon-trash" actionListener="#{pessoaBean.excluir}" update=":mensagem :formListagem:tabela">
+						<p:confirm header="Confirmação" message="Deseja excluir essa pessoa?" icon="ui-icon-alert"></p:confirm>
+						<f:attribute name="pessoaSelecionada" value="#{pessoa}"></f:attribute>
+					</p:commandButton>
+					
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{pessoaBean.editar}" update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show();">
+						<f:attribute name="pessoaSelecionada" value="#{pessoa}"></f:attribute>
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"></f:actionListener>
+					</p:commandButton>
 				</p:column>	
-				
-				<p:column headerText="Bairro">
-				</p:column>
-				
-				<p:column headerText="Cidade">
-				</p:column>
-				
-				<p:column headerText="CEP">
-				</p:column>	
-				
-				<p:column headerText="Celular">
-				</p:column>
-				
-				<p:column headerText="Telefone">
-				</p:column>	
-				
-				<p:column headerText="Email">
-				</p:column>	
-				
-				
-				
 		
 		</p:dataTable>
 
+	<p:confirmDialog global="true">
+		<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"></p:commandButton>
+		<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"></p:commandButton>
+	</p:confirmDialog>
+	
 	</p:panel>
 </h:form>	
 
-	<p:dialog header="Cadastro" widgetVar="dialogo"
+	<p:dialog header="Pessoas - Cadastro" widgetVar="dialogo"
 				draggable="false" resizable="false" modal="true">
 				
-			<h:form>
-				<h:panelGrid columns="2">
-					<p:outputLabel value="Nome: "></p:outputLabel>
-					<p:inputText maxlength="50" size="30"></p:inputText>
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel  for="nome" value="Nome: "></p:outputLabel>
+					<p:inputText id="nome" maxlength="50" size="30" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"></p:inputText>
 					
-					<p:outputLabel value="Data de Nascimento: "></p:outputLabel>
-					<p:calendar></p:calendar>
+					
 					
 					
 					<p:outputLabel value="CPF: "></p:outputLabel>
