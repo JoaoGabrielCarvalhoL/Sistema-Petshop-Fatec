@@ -11,6 +11,7 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.javapet.dao.CidadeDao;
 import br.com.javapet.dao.EstadoDao;
 import br.com.javapet.dao.PessoaDao;
 import br.com.javapet.domain.Cidade;
@@ -26,6 +27,8 @@ public class PessoaBean implements Serializable
 	
 	private List<Pessoa> pessoas; 
 	
+	private Estado estado; 
+		
 	private List<Estado> estados; 
 	
 	private List<Cidade> cidades; 
@@ -69,6 +72,16 @@ public class PessoaBean implements Serializable
 	public void setPessoas(List<Pessoa> pessoas) 
 	{
 		this.pessoas = pessoas;
+	}
+	
+	public Estado getEstado() 
+	{
+		return estado;
+	}
+	
+	public void setEstado(Estado estado) 
+	{
+		this.estado = estado;
 	}
 	
 	@PostConstruct
@@ -118,5 +131,27 @@ public class PessoaBean implements Serializable
 	public void excluir(ActionEvent evento)
 	{
 		
+	}
+	
+	public void popular()
+	{
+		try
+		{
+			if (estado != null)
+			{
+				CidadeDao cidadeDao = new CidadeDao(); 
+				cidades = cidadeDao.buscarPorEstado(estado.getId());
+			}
+			
+			else
+			{
+				cidades = new ArrayList<>();
+			}
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorre um erro ao tentar filtrar as cidades");
+			erro.printStackTrace();
+		}
 	}
 }
