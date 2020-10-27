@@ -90,7 +90,7 @@ public class PessoaBean implements Serializable
 		try 
 		{
 			PessoaDao pessoaDao = new PessoaDao(); 
-			pessoas = pessoaDao.listar();
+			pessoas = pessoaDao.listar("nome");
 		
 		}
 		catch(RuntimeException erro)
@@ -105,9 +105,11 @@ public class PessoaBean implements Serializable
 		try
 		{
 			pessoa = new Pessoa(); 
+			estado = new Estado(); 
+			
 			EstadoDao estadoDao = new EstadoDao(); 
-			estados = estadoDao.listar(); 
-		
+			estados = estadoDao.listar("nome");
+			
 			cidades = new ArrayList<>();
 		}
 		catch(RuntimeException erro)
@@ -125,7 +127,28 @@ public class PessoaBean implements Serializable
 	
 	public void salvar()
 	{
-		
+		try
+		{
+			PessoaDao pessoaDao = new PessoaDao(); 
+			pessoaDao.merge(pessoa);
+			
+			pessoas = pessoaDao.listar("nome");
+			
+			pessoa = new Pessoa(); 
+			estado = new Estado(); 
+			
+			EstadoDao estadoDao = new EstadoDao(); 
+			estados = estadoDao.listar("nome");
+			
+			cidades = new ArrayList<>();
+			
+			
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar uma pessoa");
+			erro.printStackTrace();
+		}
 	}
 	
 	public void excluir(ActionEvent evento)
