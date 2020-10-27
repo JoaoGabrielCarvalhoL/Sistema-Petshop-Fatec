@@ -13,26 +13,34 @@
 </h:head>
 
 <h:body>
+
 <h:form>
 
 	<p:panel header="Clientes - Listagem">
 	
 		<p:dataTable emptyMessage="Nenhum registro encontrado."
-			paginator="true">
+			paginator="true" value="#{clienteBean.clientes}" var="cliente" rows="">
 			
 				<f:facet name="footer">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"></p:commandButton>						
 				</f:facet>
+				
 				<p:column headerText="Nome">
+					<h:outputText value="#{cliente.pessoa.nome}"></h:outputText>
 				</p:column>
 				
 				<p:column headerText="CPF">
+					<h:outputText value="#{cliente.pessoa.cpf}"></h:outputText>
 				</p:column>
 				
 				<p:column headerText="Email">
+					<h:outputText value="#{cliente.pessoa.email}"></h:outputText>
 				</p:column>	
 				
 				<p:column headerText="Data de Cadastro">
+					<h:outputText value="#{cliente.dataCadastro}">
+						<f:convertDateTime locale="pt_BR"></f:convertDateTime>
+					</h:outputText>
 				</p:column>	
 				
 				<p:column headerText="Opções">
