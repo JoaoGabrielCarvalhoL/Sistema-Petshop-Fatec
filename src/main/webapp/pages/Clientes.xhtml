@@ -9,6 +9,7 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Clientes</title>
+	<h:outputScript library="js" name="scripts.js"></h:outputScript>
 	
 </h:head>
 
@@ -82,7 +83,7 @@
 					</p:selectOneMenu>
 					
 					<p:outputLabel for="dataCadastro" value="Data de cadastro: "></p:outputLabel>
-					<p:calendar id="dataCadastro" value="#{clienteBean.cliente.dataCadastro}" required="true" requiredMessage="O campo Data de Cadastro é obrigatório!" size="10"></p:calendar>
+					<p:calendar id="dataCadastro" value="#{clienteBean.cliente.dataCadastro}" required="true" requiredMessage="O campo Data de Cadastro é obrigatório!" size="10" locale="pt_BR"></p:calendar>
 					
 					
 				</h:panelGrid>	
