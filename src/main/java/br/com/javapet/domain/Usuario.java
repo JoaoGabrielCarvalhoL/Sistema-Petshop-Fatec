@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
@@ -61,4 +62,46 @@ public class Usuario extends GenericDomain
 	{
 		this.pessoa = pessoa;
 	} 
+	
+	@Transient
+	public String getTipoFormatado()
+	{
+		String tipoFormatado = null;
+		
+		if(tipo == 'A' || tipo == 'a')
+		{
+			tipoFormatado = "Administrador";
+		}
+		
+		if(tipo == 'C' || tipo == 'c')
+		{
+			tipoFormatado = "Cliente";
+		}
+		
+		if(tipo == 'F' || tipo == 'f')
+		{
+			tipoFormatado = "Funcionário";
+		}
+		
+		return tipoFormatado; 
+	}
+	
+	@Transient
+	public String getAtivoFormatado()
+	{
+		String ativoFormatado = null;
+		
+		if(ativo)
+		{
+			ativoFormatado = "Sim";
+		}
+		else 
+		{
+			ativoFormatado = "Não";
+		}
+		
+		return ativoFormatado; 
+		
+		
+	}
 }
