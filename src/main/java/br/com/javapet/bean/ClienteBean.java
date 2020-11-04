@@ -123,14 +123,23 @@ public class ClienteBean implements Serializable
 		}
 		catch(RuntimeException erro)
 		{
-			Messages.addGlobalError("Ocorreu um erro ao tentar excluir uma pessoa");
+			Messages.addGlobalError("Ocorreu um erro ao tentar excluir um cliente");
 			erro.printStackTrace();
 		}
 		
 	}
 	
-	public void editar()
+	public void editar(ActionEvent evento)
 	{
+		try
+		{
+			cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar alterar um cliente");
+			erro.printStackTrace();
+		}
 		
 	}
 	
