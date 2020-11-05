@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -112,8 +113,21 @@ public class UsuarioBean implements Serializable
 		
 	}
 	
-	public void excluir()
+	public void excluir(ActionEvent evento)
 	{
-		
+		try
+		{
+			usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
+			UsuarioDao usuarioDao = new UsuarioDao(); 
+			usuarioDao.excluir(usuario);
+			
+			usuarios = usuarioDao.listar("nome"); 
+			Messages.addGlobalInfo("Usuário excluído com sucesso!");
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar excluir o usuário");
+			erro.printStackTrace();
+		}
 	}
 }
