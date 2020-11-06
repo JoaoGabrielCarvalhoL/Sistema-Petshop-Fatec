@@ -130,7 +130,8 @@ public class UsuarioBean implements Serializable
 			UsuarioDao usuarioDao = new UsuarioDao(); 
 			usuarioDao.excluir(usuario);
 			
-			usuarios = usuarioDao.listar("nome"); 
+			
+			usuarios = usuarioDao.listar(); 
 			Messages.addGlobalInfo("Usuário excluído com sucesso!");
 		}
 		catch(RuntimeException erro)
