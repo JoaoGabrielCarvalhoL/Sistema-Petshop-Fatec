@@ -108,9 +108,18 @@ public class UsuarioBean implements Serializable
 		}
 	}
 	
-	public void editar()
+	public void editar(ActionEvent evento)
 	{
-		
+		try
+		{
+			usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
+			
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar alterar o usuário");
+			erro.printStackTrace();	
+		}
 	}
 	
 	public void excluir(ActionEvent evento)

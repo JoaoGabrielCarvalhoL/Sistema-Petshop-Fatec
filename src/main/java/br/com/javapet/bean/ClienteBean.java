@@ -117,7 +117,7 @@ public class ClienteBean implements Serializable
 			ClienteDao clienteDao = new ClienteDao(); 
 			clienteDao.excluir(cliente);
 			
-			clientes = clienteDao.listar("nome");
+			clientes = clienteDao.listar("dataCadastro");
 			Messages.addGlobalInfo("Cliente excluído com sucesso!");
 			
 		}
@@ -134,6 +134,7 @@ public class ClienteBean implements Serializable
 		try
 		{
 			cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
+			
 		}
 		catch(RuntimeException erro)
 		{
