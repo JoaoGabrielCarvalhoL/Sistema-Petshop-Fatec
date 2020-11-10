@@ -126,7 +126,7 @@ public class AnimalBean implements Serializable
 			animais = animalDao.listar("nomeAnimal");
 			
 			ClienteDao clienteDao = new ClienteDao(); 
-			clientes = clienteDao.listar(cliente.getPessoa().getNome());
+			clientes = clienteDao.listar();
 			
 			Messages.addGlobalInfo("Animal salvo com sucesso!");
 			
