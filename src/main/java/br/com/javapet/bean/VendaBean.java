@@ -101,4 +101,31 @@ public class VendaBean implements Serializable
 			erro.printStackTrace();
 		}
 	}
+	
+	public void remover(ActionEvent evento)
+	{
+		try
+		{
+			ItemVenda itemVenda = (ItemVenda)evento.getComponent().getAttributes().get("itemSelecionado");
+			
+			int achou = -1; 
+			for(int posicao =0; posicao<itensVenda.size(); posicao ++)
+			{
+				if (itensVenda.get(posicao).getProduto().equals(itemVenda.getProduto()))
+				{
+					achou = posicao;
+				}
+			}
+			
+			if(achou >-1)
+			{
+				itensVenda.remove(achou);
+			}
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar remover produtos");
+			erro.printStackTrace();
+		}
+	}
 }
