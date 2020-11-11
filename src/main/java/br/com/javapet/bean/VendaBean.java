@@ -15,6 +15,7 @@ import org.omnifaces.util.Messages;
 import br.com.javapet.dao.ProdutoDao;
 import br.com.javapet.domain.ItemVenda;
 import br.com.javapet.domain.Produto;
+import br.com.javapet.domain.Venda;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -24,6 +25,8 @@ public class VendaBean implements Serializable
 	private List<Produto> produtos;
 	
 	private List<ItemVenda> itensVenda; 
+	
+	private Venda venda; 
 	
 	public List<Produto> getProdutos() 
 	{
@@ -45,11 +48,24 @@ public class VendaBean implements Serializable
 		this.itensVenda = itensVenda;
 	}
 	
+	public Venda getVenda() 
+	{
+		return venda;
+	}
+	
+	public void setVenda(Venda venda) 
+	{
+		this.venda = venda;
+	}
+	
 	@PostConstruct
 	public void listar()
 	{
 		try
 		{
+			venda = new Venda(); 
+			venda.setValorTotal(new BigDecimal("0.00"));
+			
 			ProdutoDao produtoDao = new ProdutoDao(); 
 			produtos = produtoDao.listar("descricao");
 			itensVenda = new ArrayList<>();
@@ -94,6 +110,8 @@ public class VendaBean implements Serializable
 				itemVenda.setValorParcial(produto.getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
 			}
 			
+			calcular();
+			
 		}
 		catch(RuntimeException erro)
 		{
@@ -121,11 +139,24 @@ public class VendaBean implements Serializable
 			{
 				itensVenda.remove(achou);
 			}
+			
+			calcular();
 		}
 		catch(RuntimeException erro)
 		{
 			Messages.addGlobalError("Ocorreu um erro ao tentar remover produtos");
 			erro.printStackTrace();
+		}
+	}
+	
+	public void calcular()
+	{
+		venda.setValorTotal(new BigDecimal("0.00"));
+		
+		for (int posicao = 0; posicao<itensVenda.size(); posicao++)
+		{
+			ItemVenda itemVenda = itensVenda.get(posicao);
+			venda.setValorTotal(venda.getValorTotal().add(itemVenda.getValorParcial()));
 		}
 	}
 }
