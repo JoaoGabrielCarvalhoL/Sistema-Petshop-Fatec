@@ -1,6 +1,7 @@
 package br.com.javapet.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class VendaBean implements Serializable
 		{
 			ProdutoDao produtoDao = new ProdutoDao(); 
 			produtos = produtoDao.listar("descricao");
-			itensVenda = new ArrayList<ItemVenda>();
+			itensVenda = new ArrayList<>();
 		}
 		catch(RuntimeException erro)
 		{
@@ -67,13 +68,31 @@ public class VendaBean implements Serializable
 		{
 			Produto produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 			
-			ItemVenda itemVenda = new ItemVenda(); 
-			itemVenda.setValorParcial(produto.getPreco());
-			itemVenda.setProduto(produto);
-			itemVenda.setQuantidade(new Short("1"));
+			int achou = -1; 
+			for(int posicao =0; posicao<itensVenda.size(); posicao++)
+			{
+				if (itensVenda.get(posicao).getProduto().equals(produto))
+				{
+					achou = posicao;
+				}
+			}
 			
-			itensVenda.add(itemVenda);
+			if (achou < 0)
+			{
+				ItemVenda itemVenda = new ItemVenda(); 
+				itemVenda.setValorParcial(produto.getPreco());
+				itemVenda.setProduto(produto);
+				itemVenda.setQuantidade(new Short("1"));
 			
+				itensVenda.add(itemVenda);
+			}
+			
+			else
+			{
+				ItemVenda itemVenda = itensVenda.get(achou);
+				itemVenda.setQuantidade(new Short(itemVenda.getQuantidade() + 1 + ""));
+				itemVenda.setValorParcial(produto.getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
+			}
 			
 		}
 		catch(RuntimeException erro)
