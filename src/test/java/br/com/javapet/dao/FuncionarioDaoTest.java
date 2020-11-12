@@ -15,7 +15,7 @@ public class FuncionarioDaoTest
 	@Ignore
 	public void salvar()
 	{
-		Long codigo = 1L;
+		Long codigo = 7L;
 		PessoaDao pessoaDao = new PessoaDao(); 
 		Pessoa pessoa = pessoaDao.buscar(codigo); 
 		
@@ -175,7 +175,7 @@ public class FuncionarioDaoTest
 	@Ignore
 	public void excluir()
 	{
-		Long codigo = 1L; 
+		Long codigo = 2L; 
 		FuncionarioDao funcionarioDao = new FuncionarioDao(); 
 		Funcionario funcionario = funcionarioDao.buscar(codigo);
 		

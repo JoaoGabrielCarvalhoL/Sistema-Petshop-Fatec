@@ -12,7 +12,11 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.javapet.dao.ClienteDao;
+import br.com.javapet.dao.FuncionarioDao;
 import br.com.javapet.dao.ProdutoDao;
+import br.com.javapet.domain.Cliente;
+import br.com.javapet.domain.Funcionario;
 import br.com.javapet.domain.ItemVenda;
 import br.com.javapet.domain.Produto;
 import br.com.javapet.domain.Venda;
@@ -27,6 +31,30 @@ public class VendaBean implements Serializable
 	private List<ItemVenda> itensVenda; 
 	
 	private Venda venda; 
+	
+	private List<Cliente> clientes; 
+	
+	private List<Funcionario> funcionarios; 
+	
+	public List<Funcionario> getFuncionarios() 
+	{
+		return funcionarios;
+	}
+	
+	public void setFuncionarios(List<Funcionario> funcionarios) 
+	{
+		this.funcionarios = funcionarios;
+	}
+	
+	public List<Cliente> getClientes() 
+	{
+		return clientes;
+	}
+	
+	public void setClientes(List<Cliente> clientes) 
+	{
+		this.clientes = clientes;
+	}
 	
 	public List<Produto> getProdutos() 
 	{
@@ -157,6 +185,23 @@ public class VendaBean implements Serializable
 		{
 			ItemVenda itemVenda = itensVenda.get(posicao);
 			venda.setValorTotal(venda.getValorTotal().add(itemVenda.getValorParcial()));
+		}
+	}
+	
+	public void finalizar()
+	{
+		try
+		{
+			FuncionarioDao funcionarioDao = new FuncionarioDao(); 
+			funcionarios = funcionarioDao.listarOrdenado();
+			
+			ClienteDao clienteDao = new ClienteDao(); 
+			clientes = clienteDao.listarOrdenado();
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar finalizar a venda");
+			erro.printStackTrace();
 		}
 	}
 }
