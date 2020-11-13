@@ -176,7 +176,8 @@ public class GenericDao<Entidade>
 		
 	}
 	
-	public void merge(Entidade entidade)
+	@SuppressWarnings("unchecked")
+	public Entidade merge(Entidade entidade)
 	{
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
@@ -184,8 +185,10 @@ public class GenericDao<Entidade>
 		try
 		{
 			transacao = sessao.beginTransaction();
-			sessao.merge(entidade);
+			Entidade retorno = (Entidade) sessao.merge(entidade);
 			transacao.commit();
+			return retorno; 
+			
 		}catch(RuntimeException erro)
 		{
 			if (transacao!=null)

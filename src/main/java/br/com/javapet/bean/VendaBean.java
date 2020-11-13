@@ -16,6 +16,7 @@ import org.omnifaces.util.Messages;
 import br.com.javapet.dao.ClienteDao;
 import br.com.javapet.dao.FuncionarioDao;
 import br.com.javapet.dao.ProdutoDao;
+import br.com.javapet.dao.VendaDao;
 import br.com.javapet.domain.Cliente;
 import br.com.javapet.domain.Funcionario;
 import br.com.javapet.domain.ItemVenda;
@@ -204,6 +205,27 @@ public class VendaBean implements Serializable
 		catch(RuntimeException erro)
 		{
 			Messages.addGlobalError("Ocorreu um erro ao tentar finalizar a venda");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void salvar()
+	{
+		try
+		{
+			if(venda.getValorTotal().signum() == 0)
+			{
+				Messages.addGlobalError("Não existe produtos na cesta de compras");
+			}
+			
+			VendaDao vendaDao = new VendaDao(); 
+			vendaDao.salvar(venda, itensVenda);
+			
+			Messages.addGlobalInfo("Venda realizada com sucesso!");
+		}
+		catch(RuntimeException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a venda");
 			erro.printStackTrace();
 		}
 	}

@@ -15,7 +15,7 @@
 		<p:panel header="Produtos">
 			<p:dataTable id="tabelaProduto" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{vendaBean.produtos}" var="produto"
-				rows="3">
+				rows="">
 
 				<p:column headerText="Descrição" filterBy="#{produto.descricao}"
 					sortBy="#{produto.descricao}">
@@ -45,7 +45,7 @@
 		<p:panel header="Cesta de Compras">
 			<p:dataTable id="tabelaCesta" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{vendaBean.itensVenda}" var="itemVenda"
-				rows="3">
+				rows="" paginatorPosition="bottom">
 
 				<p:column headerText="Descrição">
 					<h:outputText value="#{itemVenda.produto.descricao}" />
@@ -81,7 +81,9 @@
 				<h:outputText value="#{vendaBean.venda.valorTotal}">
 					<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 				</h:outputText>
-				<p:commandButton value="Finalizar" actionListener="#{vendaBean.finalizar}" update=":mensagem: formularioFinalizar:painelFinalizar" oncomplete="PF('dialogo').show();"></p:commandButton>
+				<p:commandButton value="Finalizar" actionListener="#{vendaBean.finalizar}" update=":mensagem: formularioFinalizar:painelFinalizar" oncomplete="PF('dialogo').show();">
+					<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"></f:actionListener>
+				</p:commandButton>
 			</h:panelGrid>
 		</p:panel>
 	</h:form>
@@ -101,14 +103,14 @@
 					<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 				</h:outputText>
 			
-				<p:outputLabel value="Funcionário: "></p:outputLabel>
-				<p:selectOneMenu value="#{vendaBean.venda.funcionario}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains">
+				<p:outputLabel for="funcionario" value="Funcionário: "></p:outputLabel>
+				<p:selectOneMenu id="funcionario" value="#{vendaBean.venda.funcionario}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" required="true" requiredMessage="O campo Funcionário é obrigatório">
 					<f:selectItem noSelectionOption="true" itemLabel="Selecione um funcionário"></f:selectItem>
 					<f:selectItems value="#{vendaBean.funcionarios}" var="funcionario" itemValue="#{funcionario}" itemLabel="#{funcionario.pessoa.nome} - #{funcionario.pessoa.cpf}"></f:selectItems>
 				</p:selectOneMenu>
 				
-				<p:outputLabel value="Cliente: "></p:outputLabel>
-				<p:selectOneMenu value="#{vendaBean.venda.cliente}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains">
+				<p:outputLabel for="cliente" value="Cliente: "></p:outputLabel>
+				<p:selectOneMenu id="cliente" value="#{vendaBean.venda.cliente}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" required="true" requiredMessage="O campo Cliente é obrigatório">
 					<f:selectItem noSelectionOption="true" itemLabel="Selecione um cliente"></f:selectItem>
 					<f:selectItems value="#{vendaBean.clientes}" var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.pessoa.nome} - #{cliente.pessoa.cpf}"></f:selectItems>
 				</p:selectOneMenu>
@@ -117,7 +119,7 @@
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar"></p:commandButton>
+				<p:commandButton value="Salvar" actionListener="#{vendaBean.salvar}" update=":mensagem" oncomplete="PF('dialogo').hide();"></p:commandButton>
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"></p:commandButton>
 			</h:panelGrid>
 		</h:form>
