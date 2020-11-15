@@ -42,7 +42,7 @@
 					</h:outputText>
 				</p:column>	
 				
-				<p:column headerText="Opções">
+				<p:column headerText="Opções" width="105">
 					<p:commandButton icon="ui-icon-trash" actionListener="#{administradorBean.excluir}" update=":mensagem :formListagem:tabela">
 						<p:confirm header="Confirmação" message="Deseja excluir essa pessoa?" icon="ui-icon-alert"></p:confirm>
 						<f:attribute name="administradorSelecionado" value="#{administrador}"></f:attribute>
