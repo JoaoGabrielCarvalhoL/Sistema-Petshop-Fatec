@@ -28,11 +28,20 @@ ORDER BY javapet.produto.descricao ASC]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="84" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="-20" y="0" width="595" height="80" uuid="4efe3a8d-03e4-4d94-b553-0604947cfbde"/>
-				<imageExpression><![CDATA["/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
-			</image>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="560" height="89" uuid="20704270-311f-4fb6-b84a-a69cb96e5ca9"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MeuPet 
+Sistema de Gerenciamento para Petshops
+
+]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -42,7 +51,7 @@ ORDER BY javapet.produto.descricao ASC]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Relatório de Produtos]]></text>
+				<text><![CDATA[Relatorio de Produtos]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -55,7 +64,7 @@ ORDER BY javapet.produto.descricao ASC]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Produtos e Serviços
+				<text><![CDATA[Produtos e Servi�os
 ]]></text>
 			</staticText>
 			<staticText>
@@ -65,7 +74,7 @@ ORDER BY javapet.produto.descricao ASC]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Preço
+				<text><![CDATA[Pre�o
 ]]></text>
 			</staticText>
 		</band>
