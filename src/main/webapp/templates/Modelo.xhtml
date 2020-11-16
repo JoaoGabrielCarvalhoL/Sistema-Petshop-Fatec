@@ -10,6 +10,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Meupet</title>
 	<h:outputStylesheet library="css" name="Estilos.css"></h:outputStylesheet>
+
 </h:head>
 
 <h:body style="background-color:#2c2c2c;">
@@ -45,6 +46,10 @@
 				<p:menuitem value="Tutorial" url="/pages/Tutorial.xhtml"></p:menuitem>
 			</p:submenu>
 		
+			<p:submenu label="Agendamentos">
+				<p:menuitem value="Agenda" url=""></p:menuitem>
+			</p:submenu>
+		
 			<p:submenu label="Arquivos">
 				<p:menuitem value="Sair"></p:menuitem>
 			</p:submenu>
@@ -55,11 +60,14 @@
 		
 		<div id="conteudo">
 			<ui:insert name="conteudo"></ui:insert>
+		<div class="rodape">
+			<h2>MeuPet!</h2>
+			<h3>Sistema de gerenciamento de Petshops</h3>
 		</div>
 	
 	</div>
 
-
+	</div>
 </h:body>
 
 </html>
