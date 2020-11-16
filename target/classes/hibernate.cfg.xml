@@ -43,6 +43,7 @@
 		<mapping class="br.com.javapet.domain.Funcionario"/>
 		<mapping class="br.com.javapet.domain.Animal"/>
 		<mapping class="br.com.javapet.domain.Administrador"/>
+		<mapping class="br.com.javapet.domain.Agendamento"/>
 
 		
 

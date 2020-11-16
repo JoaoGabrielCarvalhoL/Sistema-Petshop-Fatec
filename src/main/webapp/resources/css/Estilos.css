@@ -49,10 +49,12 @@
 .divTutorial
 {
 	color: #ffffff;
-	font-size: 14px;
+	 font-size: 24px !important;
 }
 
 .rodape{
 	text-align:center; 
 	color: #ffffff;
 }
+
+
