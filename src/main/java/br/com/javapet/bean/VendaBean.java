@@ -2,15 +2,19 @@ package br.com.javapet.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.com.javapet.dao.ClienteDao;
@@ -22,6 +26,11 @@ import br.com.javapet.domain.Funcionario;
 import br.com.javapet.domain.ItemVenda;
 import br.com.javapet.domain.Produto;
 import br.com.javapet.domain.Venda;
+import br.com.javapet.util.HibernateUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -229,6 +238,26 @@ public class VendaBean implements Serializable
 		catch(RuntimeException erro)
 		{
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a venda");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void imprimir()
+	{
+		try
+		{
+			String caminho = Faces.getRealPath("/reports/Vendas.jasper");
+			
+			Map<String, Object> parametros = new HashMap<>();
+			
+			Connection conexao = HibernateUtil.getConexao();
+			
+			JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
+			JasperPrintManager.printReport(relatorio, true);
+		}
+		catch(JRException erro)
+		{
+			Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");
 			erro.printStackTrace();
 		}
 	}

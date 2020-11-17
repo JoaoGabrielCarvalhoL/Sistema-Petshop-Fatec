@@ -83,6 +83,10 @@
 					<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"></f:actionListener>
 				</p:commandButton>
 			</h:panelGrid>
+			<h:panelGrid>
+				<p:commandButton value="Gerar Relatório" actionListener="#{produtoBean.imprimir}"> 
+					</p:commandButton>
+					</h:panelGrid>
 		</p:panel>
 	</h:form>
 	
@@ -100,6 +104,7 @@
 				<h:outputText value="#{vendaBean.venda.valorTotal}">
 					<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 				</h:outputText>
+				
 			
 				<p:outputLabel for="funcionario" value="Funcionário: "></p:outputLabel>
 				<p:selectOneMenu id="funcionario" value="#{vendaBean.venda.funcionario}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains" required="true" requiredMessage="O campo Funcionário é obrigatório">
@@ -120,6 +125,8 @@
 				<p:commandButton value="Salvar" actionListener="#{vendaBean.salvar}" update=":mensagem :formulario:tabelaProduto :formulario:tabelaCesta :formulario:painelFinalizacao" oncomplete="PF('dialogo').hide();"></p:commandButton>
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"></p:commandButton>
 			</h:panelGrid>
+			
+				
 		</h:form>
 	</p:dialog>
 </ui:define>
