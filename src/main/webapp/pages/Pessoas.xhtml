@@ -19,7 +19,10 @@
 				<f:facet name="footer">
 					<p:commandButton value="Novo" actionListener="#{pessoaBean.novo}" oncomplete="PF('dialogo').show();" update=":mensagem :formCadastro:painel">	
 						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"></f:actionListener>		
-					</p:commandButton>			
+					</p:commandButton>	
+					
+					<p:commandButton value="Gerar Relatório" actionListener="#{produtoBean.imprimir}"> 
+					</p:commandButton>		
 				</f:facet>
 				
 				<p:column headerText="Nome">
