@@ -152,7 +152,7 @@ public class AdministradorBean implements Serializable
 	{
 		try
 		{
-			String caminho = Faces.getRealPath("/reports/Produtos.jasper");
+			String caminho = Faces.getRealPath("/reports/Administradores.jasper");
 			
 			Map<String, Object> parametros = new HashMap<>();
 			

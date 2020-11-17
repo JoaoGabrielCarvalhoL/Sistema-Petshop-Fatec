@@ -38,11 +38,15 @@ FROM javapet.venda]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="100" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="0" y="0" width="550" height="80" uuid="5bb8e6cd-e757-4297-a5e3-bc81da39f6f2"/>
-				<imageExpression><![CDATA["/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
-			</image>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="60" uuid="31cab36d-fe0f-4a10-a433-b3c95677bd09"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MeuPet
+Sistema de Gerenciamento para Petshops]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

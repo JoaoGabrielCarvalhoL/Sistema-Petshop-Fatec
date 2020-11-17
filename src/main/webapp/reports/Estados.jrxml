@@ -26,10 +26,14 @@ ORDER BY javapet.estado.nome ASC]]>
 	</field>
 	<title>
 		<band height="80" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="-20" y="0" width="595" height="80" uuid="eddd1641-a980-4955-bc19-bf9a2c89b359"/>
-				<imageExpression><![CDATA["/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
-			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="70" uuid="a1c7f28c-f218-447a-86c7-840664747ff4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MeuPet	
+Sistema de Gerenciamento para Petshops]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

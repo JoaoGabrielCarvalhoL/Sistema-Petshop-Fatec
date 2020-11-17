@@ -154,7 +154,7 @@ public class FuncionarioBean implements Serializable
 	{
 		try
 		{
-			String caminho = Faces.getRealPath("/reports/Produtos.jasper");
+			String caminho = Faces.getRealPath("/reports/Funcionarios.jasper");
 			
 			Map<String, Object> parametros = new HashMap<>();
 			

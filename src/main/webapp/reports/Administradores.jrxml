@@ -42,10 +42,14 @@ FROM javapet.administrador
 	</field>
 	<title>
 		<band height="92" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="0" y="0" width="560" height="80" uuid="b758c052-9d35-47cc-81e5-e49a493868e6"/>
-				<imageExpression><![CDATA["/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
-			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="560" height="80" uuid="1e887aa5-a47b-4c94-9fa5-96b08cad0997"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MeuPet
+Sistema de Gerenciamento para Petshops]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

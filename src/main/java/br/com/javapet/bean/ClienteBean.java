@@ -157,7 +157,7 @@ public class ClienteBean implements Serializable
 	{
 		try
 		{
-			String caminho = Faces.getRealPath("/reports/Produtos.jasper");
+			String caminho = Faces.getRealPath("/reports/Clientes.jasper");
 			
 			Map<String, Object> parametros = new HashMap<>();
 			
