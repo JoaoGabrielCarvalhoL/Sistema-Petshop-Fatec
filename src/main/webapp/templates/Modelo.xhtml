@@ -11,11 +11,12 @@
 	<title>Meupet</title>
 	<h:outputStylesheet library="css" name="Estilos.css"></h:outputStylesheet>
 	
+	
 
 </h:head>
 
 <h:body style="background-color:#2c2c2c;">
-	<p:growl id="mensagem"></p:growl>
+	<p:growl id="mensagem" ></p:growl>
 
 	<div id="geral">
 		<div id="topo" class="divTopo">
@@ -25,6 +26,10 @@
 		<div id="cabecalho" class="divCabecalho">
 		<h:form id="formMenu">
 		<p:menubar>
+			
+			<p:submenu label="Início">
+				<p:menuitem value="Menu Principal" url="/pages/Principal.xhtml"></p:menuitem>
+			</p:submenu>
 			
 			<p:submenu label="Cadastros">
 				<p:menuitem value="Estados" url="/pages/Estados.xhtml"></p:menuitem>
@@ -41,14 +46,14 @@
 				<p:menuitem value="Produtos e Serviços" url="/pages/Vendas.xhtml"></p:menuitem>
 			</p:submenu>
 			
-			<p:submenu label="Ajuda">
+			<p:submenu label="Agendamentos">
+				<p:menuitem value="Agenda" url="/pages/Agendamentos.xhtml"></p:menuitem>
+			</p:submenu>
+			
+				<p:submenu label="Ajuda">
 				<p:menuitem value="Sobre" url="/pages/Sobre.xhtml"></p:menuitem>
 				<p:menuitem value="Desenvolvedores" url="/pages/Desenvolvedores.xhtml"></p:menuitem>
 				<p:menuitem value="Tutorial" url="/pages/Tutorial.xhtml"></p:menuitem>
-			</p:submenu>
-		
-			<p:submenu label="Agendamentos">
-				<p:menuitem value="Agenda" url="/pages/Agendamentos.xhtml"></p:menuitem>
 			</p:submenu>
 		
 			<p:submenu label="Arquivos">
@@ -62,8 +67,13 @@
 		<div id="conteudo">
 			<ui:insert name="conteudo"></ui:insert>
 		<div class="rodape">
-			<h2>MeuPet!</h2>
-			<h3>Sistema de gerenciamento de Petshops</h3>
+			<br></br><br></br><br></br><br></br><br></br>
+			<br></br><br></br><br></br><br></br><br></br>
+			<h1>MeuPet!</h1>
+			<h2>Sistema de gerenciamento de Petshops</h2>
+			
+			
+			
 		</div>
 	
 	</div>
